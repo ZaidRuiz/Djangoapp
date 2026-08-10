@@ -1,0 +1,55 @@
+{% extends "inicio/encabezado.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Comentarios
+{% endblock titulo %}
+
+{% block image %}
+        <img src="{% static 'inicio/images/comentarios.png' %}" alt="Comentarios">
+        <div class="user-info">
+            Comentarios <span>DGS</span> 
+        </div>
+{% endblock image %}
+
+{% block encabezado %}
+		<!--Encabezdo -->
+			<div class="page-header">
+				<div class="page-title">
+					<h3>Comentarios
+				    <small>Lista de comentarios</small></h3>
+				</div>
+			</div>
+			<!-- /Encabezado-->
+			
+{% endblock encabezado %}
+
+{% block contenido %}
+		
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Mensaje</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comentario in comentarios %}
+                <tr>
+                    <td>{{ comentario.usuario }}</td>
+                    <td>{{ comentario.mensaje }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'Editar' comentario.id %}">Editar</a>
+                    </td>
+                    <td class="text-center">
+                        <a href="{% url 'Eliminar' comentario.id %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock contenido %}

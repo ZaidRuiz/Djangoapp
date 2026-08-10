@@ -1,0 +1,63 @@
+{% extends "inicio/encabezado.html" %} 
+{% load static %}
+
+{% block titulo %} Subir Archivo {% endblock titulo %}
+
+{% block image %}
+    <img src="{% static 'inicio/images/contacto.png' %}" alt="Home">
+    <div class="user-info">
+        Contacto <span>DGS</span> 
+    </div>
+{% endblock image %}
+
+{% block encabezado %}
+    <!-- Encabezado -->
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Subir Archivo
+            <small>Ingresa la información requerida</small></h3>
+        </div>
+    </div>
+    <!-- /Encabezado -->
+{% endblock encabezado %}
+
+{% block contenido %}
+    <!-- Formulario según diapositivas -->
+    <form class="form-horizontal" action="{% url 'Subir' %}" method="POST" role="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <!-- Campo Título (Diapositiva 2) -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label text-right">Título:</label>
+                    <div class="col-sm-10">
+                        <input name="titulo" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Campo Descripción (Diapositiva 1) -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label text-right">Descripción:</label>
+                    <div class="col-sm-10">
+                        <textarea name="descripcion" cols="50" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <!-- Campo Archivo (Diapositiva 1) -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label text-right">Archivo:</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="archivo" />
+                    </div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="form-actions text-right">
+                    <input type="submit" value="Agregar" class="btn btn-primary">
+                </div>
+
+            </div>
+        </div>
+    </form>
+{% endblock contenido %}
